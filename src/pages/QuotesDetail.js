@@ -1,5 +1,4 @@
-import { Route } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useParams, Route, Link } from 'react-router-dom';
 import { Fragment } from 'react/cjs/react.production.min';
 
 import Comments from '../components/comments/Comments';
@@ -22,6 +21,16 @@ export default function QuotesDetail() {
   return (
     <Fragment>
       <HighlightedQuotes text={quotes.text} author={quotes.author} />
+      <Route path={`/quotes/${params.quotesId}`} exact>
+        <div className='centered'>
+          <Link
+            className='btn--flat'
+            to={`/quotes/${params.quotesId}/comments`}
+          >
+            Load Comment
+          </Link>
+        </div>
+      </Route>
       <Route path={`/quotes/${params.quotesId}/comments`}>
         <Comments />
       </Route>
